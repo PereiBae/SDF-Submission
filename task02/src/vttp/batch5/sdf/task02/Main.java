@@ -38,6 +38,7 @@ public class Main {
 
 		int utility = 0;
 
+		int bestScore = Integer.MIN_VALUE;
 		for (int i = 0; i < board.length; i++) {
 			if (board[i] == '.') {
 				board[i] = 'X';
@@ -48,7 +49,20 @@ public class Main {
 					utility += 1;
 				}
 				// Evaluate the next board
-				
+				bestScore = Integer.MAX_VALUE;
+				for (int j = 0; j <board.length; j++){
+					if (board[j] == '.'){
+						board[j] = 'O';
+						if (checkWin('O')) {
+							utility -= 1;
+						}
+						if (checkWin('X')) {
+							utility += 1;
+							break;
+						}
+						board[j] = '.';
+					}
+				}
 				
 				// return board to what was given in the text file
 				board[i] = '.';
