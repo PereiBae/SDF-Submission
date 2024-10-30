@@ -15,52 +15,12 @@ public class Main {
 
 		String file = args[0];
 		String newDataFile = args[1];
-		List<String[]> data = new ArrayList<>();
 
 		// Read CSV File
 		FileReader fReader = new FileReader(file);
 		BufferedReader br = new BufferedReader(fReader);
 
-		/*
-		 * String[]
-		 * headers={"season","mnth","holiday","weekday","weathersit","temp","hum",
-		 * "windspeed","casual","registered"};
-		 * data.add(headers);
-		 * 
-		 * // Loop through to read each line in the csv file
-		 * String line ="";
-		 * while ((line =br.readLine()) != null){
-		 * if (line.contains("season")){
-		 * continue;
-		 * }
-		 * String[] row = line.split(",");
-		 * data.add(row);
-		 * 
-		 * for (String[] strArray : data) {
-		 * for (String str : strArray) {
-		 * System.out.println(str);
-		 * }
-		 * }
-		 * }
-		 * br.close();
-		 */
-
 		List<List<String>> testData = new ArrayList<>();
-		/*
-		 * List<String> testHeaders = new ArrayList<>();
-		 * testHeaders.add("season");
-		 * testHeaders.add("mnth");
-		 * testHeaders.add("holiday");
-		 * testHeaders.add("weekday");
-		 * testHeaders.add("weathersit");
-		 * testHeaders.add("temp");
-		 * testHeaders.add("hum");
-		 * testHeaders.add("windspeed");
-		 * testHeaders.add("casual");
-		 * testHeaders.add("registered");
-		 * testHeaders.add("total");
-		 * testData.add(testHeaders);
-		 */
 
 		// Read the CSV file and put that into a list
 		String line = "";
@@ -80,13 +40,6 @@ public class Main {
 			dataHolder.add(Integer.toString(totalCyclists));
 			testData.add(dataHolder);
 
-			/*
-			 * for (List<String> info : testData) {
-			 * for (String str : info) {
-			 * System.out.println(str);
-			 * }
-			 * }
-			 */
 		}
 		br.close();
 
@@ -113,40 +66,38 @@ public class Main {
 
 			newRow[0].replace("[", "");
 			newRow[10].replace("]", "");
-			String season = newRow[0];
-			if (season == "1")
-				season = "spring";
-			if (season == "2")
-				season = "summer";
-			if (season == "3")
-				season = "fall";
-			if (season == "4")
-				season = "winter";
-			String month = (newRow[1]);
-			if (month == "9")
-				month = "September";
-			if (month == "3")
-				month = "March";
-			if (month == "5")
-				month = "May";
-			newRow[1] = month;
-			String holiday = newRow[2];
-			if (holiday == "0") {
-				holiday = "not a holiday";
+
+			if (newRow[0].equals("1"))
+				newRow[0] = "spring";
+			if (newRow[0].equals("2"))
+				newRow[0] = "summer";
+			if (newRow[0].equals("3"))
+				newRow[0] = "fall";
+			if (newRow[0].equals("4"))
+				newRow[0] = "winter";
+
+			if (newRow[1].equals("9"))
+			newRow[1] = "September";
+			if (newRow[1].equals("3"))
+			newRow[1] = "March";
+			if (newRow[1].equals("5"))
+			newRow[1] = "May";
+
+			if (newRow[2].equals("0")) {
+				newRow[2] = "not a holiday";
 			}
-			newRow[2] = holiday;
-			String weekday = newRow[3];
-			if (weekday == "6")
-				weekday = "Saturday";
-			if (weekday == "5")
-				weekday = "Friday";
-			newRow[3] = weekday;
-			String weather = newRow[4];
-			if (weather == "1")
-				weather = "Clear, Few clouds, Partly cloudy, Partly cloudy";
-			if (weather == "2")
-				weather = "Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist";
-			newRow[4] = weather;
+
+			if (newRow[3].equals("6"))
+			newRow[3] = "Saturday";
+			if (newRow[3] == "5")
+			newRow[3] = "Friday";
+
+
+			if (newRow[4].equals("1"))
+			newRow[4] = "Clear, Few clouds, Partly cloudy, Partly cloudy";
+			if (newRow[4].equals("2"))
+			newRow[4] = "Mist + Cloudy, Mist + Broken clouds, Mist + Few clouds, Mist";
+
 			String position = "";
 			if (lineCount == 0)
 				position = "highest (position)";
@@ -159,10 +110,10 @@ public class Main {
 			if (lineCount == 4)
 				position = "fifth highest (position)";
 
-			System.out.println("The " + position + " recorded number of cyclists was in " + season + ", on a "
-					+ weekday + " in the month of " + month + ".");
-			System.out.println("There was a total of " + newRow[10] + " cyclists. The weather was " + newRow[4] + "."); 
-			System.out.println(weekday + " was " + holiday + "\n");
+			System.out.println("The " + position + " recorded number of cyclists was in " + newRow[0] + ", on a "
+					+ newRow[3] + " in the month of " + newRow[1] + ".");
+			System.out.println("There was a total of " + newRow[10] + " cyclists. The weather was " + newRow[4] + ".");
+			System.out.println(newRow[3] + " was " + newRow[2] + "\n");
 
 			lineCount++;
 		}
