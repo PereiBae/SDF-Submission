@@ -14,7 +14,7 @@ public class Main {
 	public static void main(String[] args) throws IOException, FileNotFoundException {
 
 		String file = args[0];
-		String newDataFile = args[1];
+		String newDataFile = "output.txt";
 
 		// Read CSV File
 		FileReader fReader = new FileReader(file);
